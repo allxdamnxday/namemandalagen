@@ -1,0 +1,19 @@
+input[type="text"] {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  width: 80%;
+  max-width: 600px;
+  font-size: 1rem; /* Adjust font size for better readability */
+  color: #333; /* Enhance text color for better contrast */
+  background-color: #fff; /* Ensure background color for consistency */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add subtle shadow for depth */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for interactive elements */
+}
+
+input[type="text"]:focus {
+  border-color: #007bff; /* Highlight focus with a brighter border */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* Enhance shadow on focus for better visual feedback */
+  outline: none; /* Remove default focus outline to rely on border and shadow changes */
+}
