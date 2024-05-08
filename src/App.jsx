@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import './App.css';
 import TextInput from './components/TextInput.jsx';
 import ColorPicker from './components/ColorPicker.jsx';
-import FontPicker from './components/FontPicker.jsx';
-import FontSizePicker from './components/FontSizePicker.jsx'; // Import the FontSizePicker component
+import FontSizePicker from './components/FontSizePicker.jsx';
 import DisplayBox from './components/DisplayBox.jsx';
+import ThemeSwitcher from './components/ThemeSwitcher.jsx'; // Import ThemeSwitcher component
+
+// Create a context for theme state
+export const ThemeContext = createContext();
 
 function App() {
   const [text, setText] = useState('');
-  const [textColor, setTextColor] = useState('#000000');
-  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
-  const [font, setFont] = useState('Arial');
-  const [fontSize, setFontSize] = useState(16); // Initialize font size state
+  const [textColor, setTextColor] = useState('#000000'); // Simplified to a single color
+  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF'); // Simplified to a single color
+  const [fontSize, setFontSize] = useState(16);
+  const [fontFamily, setFontFamily] = useState('Arial');
+  const [theme, setTheme] = useState('light'); // State to manage theme
 
   const handleTextChange = (text) => {
     console.log(`Text changed: ${text}`);
@@ -28,25 +32,41 @@ function App() {
     setBackgroundColor(color);
   };
 
-  const handleFontChange = (font) => {
-    console.log(`Font changed: ${font}`);
-    setFont(font);
-  };
-
-  const handleFontSizeChange = (size) => { // Handle font size change
+  const handleFontSizeChange = (size) => {
     console.log(`Font size changed: ${size}`);
     setFontSize(size);
   };
 
+  const handleFontFamilyChange = (family) => {
+    console.log(`Font family changed: ${family}`);
+    setFontFamily(family);
+  };
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      console.log(`Theme changed to: ${newTheme}`);
+      return newTheme;
+    });
+  };
+
   return (
-    <>
-      <h1>NMPGEN</h1>
-      <TextInput onTextChange={handleTextChange} />
-      <ColorPicker onTextColorChange={handleTextColorChange} onBackgroundColorChange={handleBackgroundColorChange} />
-      <FontPicker onFontChange={handleFontChange} />
-      <FontSizePicker onFontSizeChange={handleFontSizeChange} /> {/* Add the FontSizePicker component */}
-      <DisplayBox text={text} textColor={textColor} backgroundColor={backgroundColor} font={font} fontSize={fontSize} /> {/* Pass fontSize as a prop */}
-    </>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div className={theme === 'light' ? 'light-theme' : 'dark-theme'}>
+        <h1>NMPGEN</h1>
+        <ThemeSwitcher />
+        <TextInput onTextChange={handleTextChange} />
+        <ColorPicker onTextColorChange={handleTextColorChange} onBackgroundColorChange={handleBackgroundColorChange} />
+        <FontSizePicker onFontSizeChange={handleFontSizeChange} onFontFamilyChange={handleFontFamilyChange} />
+        <DisplayBox 
+          text={text} 
+          textColor={textColor} 
+          backgroundColor={backgroundColor} 
+          fontSize={fontSize} 
+          fontFamily={fontFamily} 
+        />
+      </div>
+    </ThemeContext.Provider>
   );
 }
 

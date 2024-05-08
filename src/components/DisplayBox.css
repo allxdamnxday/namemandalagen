@@ -3,13 +3,13 @@
   max-width: 800px;
   height: 500px;
   margin-top: 2rem;
-  border: 2px solid #ccc;
+  border: 2px solid var(--secondary-dark); /* Updated to use secondary dark color for borders */
   border-radius: 8px;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--background-color, #FFFFFF); /* Use CSS variable for background color */
+  background-color: var(--background-dark); /* Updated to use background dark for inner background */
 }
 
 @media (max-width: 768px) {

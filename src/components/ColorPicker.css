@@ -1,9 +1,11 @@
 .color-picker {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   width: 80%;
   max-width: 600px;
   margin: 1rem auto;
+  color: var(--accent-color); /* Updated to use accent color for text */
 }
 
 .color-picker label {
@@ -11,14 +13,52 @@
   flex-direction: column;
   align-items: center;
   font-size: 0.9rem;
+  margin: 0.5rem;
+  color: var(--primary-dark); /* Updated to use primary dark color for label text */
 }
 
 .color-picker input[type="color"] {
-  border: none;
+  border: 2px solid var(--secondary-dark); /* Updated to use secondary dark color for border */
   width: 40px;
   height: 40px;
   cursor: pointer;
   margin-top: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Added subtle shadow for depth */
+}
+
+.color-picker select, .color-picker input[type="range"] {
+  margin-top: 0.5rem;
+  background-color: var(--light-accent); /* Updated to use light accent color for background */
+  border: 2px solid var(--secondary-dark); /* Updated to use secondary dark color for border */
+}
+
+.color-picker button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-dark); /* Updated to use primary dark color for button background */
+  color: var(--off-white); /* Updated to use off white color for text */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Added transition for smoother hover effect */
+}
+
+.color-picker button:hover {
+  background-color: var(--secondary-dark); /* Updated to use secondary dark color for hover background */
+}
+
+.gradient-direction, .gradient-shape {
+  margin-top: 1rem;
+}
+
+.color-stop {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.color-stop input[type="color"] {
+  margin-right: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -29,5 +69,13 @@
 
   .color-picker label {
     margin-bottom: 1rem;
+  }
+
+  .gradient-direction, .gradient-shape {
+    width: 90%;
+  }
+
+  .color-stop {
+    justify-content: center;
   }
 }

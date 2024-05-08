@@ -7,16 +7,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: var(--off-white); /* Updated background color */
 }
 
 /* Styling for the TextInput component */
 input[type="text"] {
   padding: 0.5rem;
   margin: 0.5rem 0;
-  border: 2px solid #ccc;
+  border: 2px solid var(--secondary-dark); /* Use secondary dark color for borders */
   border-radius: 4px;
   width: 80%;
   max-width: 600px;
+  color: var(--primary-dark); /* Use primary dark color for text */
+  background-color: var(--light-accent); /* Use light accent color for background */
 }
 
 /* Styling for the ColorPicker component */
@@ -32,6 +35,7 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--accent-color); /* Use accent color for label text */
 }
 
 .color-picker input[type="color"] {
@@ -52,7 +56,8 @@ input[type="text"] {
   width: 100%;
   padding: 0.5rem;
   border-radius: 4px;
-  border: 2px solid #ccc;
+  border: 2px solid var(--secondary-dark); /* Use secondary dark color for borders */
+  background-color: var(--light-accent); /* Use light accent color for background */
 }
 
 /* Styling for the FontSizePicker component */
@@ -66,6 +71,7 @@ input[type="text"] {
   display: block;
   margin-bottom: 5px;
   font-weight: medium;
+  color: var(--accent-color); /* Use accent color for label text */
 }
 
 .font-size-picker input[type="range"] {
@@ -78,9 +84,10 @@ input[type="text"] {
   max-width: 800px;
   height: 500px;
   margin-top: 2rem;
-  border: 2px solid #ccc;
+  border: 2px solid var(--secondary-dark); /* Use secondary dark color for borders */
   border-radius: 8px;
   overflow: hidden;
+  background-color: var(--background-dark); /* Use background dark for inner background */
 }
 
 @media (max-width: 768px) {

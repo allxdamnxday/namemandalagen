@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
-function DisplayBox({ text, textColor, backgroundColor, font, fontSize }) {
+function DisplayBox({ text, textColor, backgroundColor, fontFamily, fontSize }) {
   const svgRef = useRef();
 
   useEffect(() => {
@@ -23,9 +23,14 @@ function DisplayBox({ text, textColor, backgroundColor, font, fontSize }) {
     // Create group for text manipulation
     const textGroup = svg.append('g')
                          .attr('transform', `translate(${cx}, ${cy})`)
-                         .style('font-family', font)
-                         .style('fill', textColor)
+                         .style('font-family', fontFamily) // Use fontFamily prop
                          .style('font-size', `${fontSize}px`); // Apply font size
+
+    // Apply text color
+    textGroup.style('fill', textColor);
+
+    // Apply background color
+    svg.style('background-color', backgroundColor);
 
     // Original text
     const originalText = textGroup.append('text')
@@ -55,12 +60,33 @@ function DisplayBox({ text, textColor, backgroundColor, font, fontSize }) {
                 .attr('dominant-baseline', 'central');
     }
 
-    console.log("DisplayBox updated with new text, color, font, and font size.");
 
-  }, [text, textColor, backgroundColor, font, fontSize]); // Add fontSize to the dependency array
+// After the for loop that creates the text elements
+let maxTextLength = 0;
+textGroup.selectAll('text').each(function() {
+  let textLength = this.getComputedTextLength();
+  if (textLength > maxTextLength) {
+    maxTextLength = textLength;
+  }
+});
+
+let radius = maxTextLength / 2 + 5; // Radius of the circle path, reduce the additional space to 5
+
+// Create a static circle
+const staticCircle = textGroup.append('circle')
+                              .attr('r', radius) // Radius of the circle
+                              .attr('fill', 'none') // No fill color
+                              .attr('stroke', textColor) // Stroke color same as the text color
+                              .attr('stroke-width', 4); // Stroke width
+
+console.log("DisplayBox updated with new text, color, font, font size, and font family.");
+
+    console.log("DisplayBox updated with new text, color, font, font size, and font family.");
+
+  }, [text, textColor, backgroundColor, fontFamily, fontSize]); // Add fontFamily to the dependency array
 
   return (
-    <svg ref={svgRef} style={{ width: '100%', height: '500px', backgroundColor: backgroundColor }} xmlns="http://www.w3.org/2000/svg">
+    <svg ref={svgRef} style={{ width: '100%', height: '500px' }} xmlns="http://www.w3.org/2000/svg">
     </svg>
   );
 }

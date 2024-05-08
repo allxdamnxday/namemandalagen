@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function FontPicker({ onFontChange }) {
-  const [font, setFont] = useState('Arial'); // Default font
+  const [fonts, setFonts] = useState(['Aguafina Script', 'Dancing Script', 'Pinyon Script']); // Initialize fonts list with specific fonts
+
+  useEffect(() => {
+    // Log the successful loading of fonts
+    console.log('Fonts loaded successfully');
+  }, []);
 
   const handleChange = (event) => {
-    setFont(event.target.value);
     onFontChange(event.target.value);
     console.log(`Font changed to: ${event.target.value}`);
   };
@@ -12,19 +16,10 @@ function FontPicker({ onFontChange }) {
   return (
     <label>
       Font:
-      <select value={font} onChange={handleChange}>
-        <option value="Arial">Arial</option>
-        <option value="Verdana">Verdana</option>
-        <option value="Helvetica">Helvetica</option>
-        <option value="Times New Roman">Times New Roman</option>
-        <option value="Courier New">Courier New</option>
-        <option value="Georgia">Georgia</option>
-        <option value="Palatino">Palatino</option>
-        <option value="Garamond">Garamond</option>
-        <option value="Comic Sans MS">Comic Sans MS</option>
-        <option value="Trebuchet MS">Trebuchet MS</option>
-        <option value="Arial Black">Arial Black</option>
-        <option value="Impact">Impact</option>
+      <select onChange={handleChange}>
+        {fonts.map((fontName, index) => (
+          <option key={index} value={fontName}>{fontName}</option>
+        ))}
       </select>
     </label>
   );
