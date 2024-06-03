@@ -46,16 +46,18 @@ function App() {
       fontFamily
     };
     console.log(exportData);
-
+  
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+  
     try {
-      const response = await fetch('http://localhost:3000/api/mandala', {
+      const response = await fetch(`${apiUrl}/mandala`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(exportData)
       });
-
+  
       if (response.ok) {
         console.log('Data sent successfully!');
       } else {
@@ -65,7 +67,7 @@ function App() {
       console.error('Error:', error);
     }
   };
-
+  
   return (
     <div className="App">
       <h1>Create Your Name Mandala</h1>
