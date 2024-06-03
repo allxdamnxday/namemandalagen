@@ -1,0 +1,12 @@
+[build]
+  functions = "mandala-server"
+  publish = "public"
+
+[build.environment]
+    NODE_VERSION = "16"
+
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
