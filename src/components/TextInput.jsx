@@ -14,7 +14,7 @@ function TextInput({ onTextChange }) {
       type="text"
       value={text}
       onChange={handleChange}
-      placeholder="Enter name here..."
+      placeholder="Enter name mandala script here..."
       className="text-input"
     />
   );

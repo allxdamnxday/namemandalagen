@@ -12,10 +12,6 @@
   --dark-accent: #C4974B; /* Darker shade of accent color */
   --background-dark: #5D4B3B; /* Very dark brown for potential dark theme */
   --text-light: #FFFFFF; /* Pure white for text on dark backgrounds */
-  --theme-light-background: var(--off-white); /* Light theme background */
-  --theme-light-text: var(--primary-dark); /* Light theme text color */
-  --theme-dark-background: var(--primary-dark); /* Dark theme background */
-  --theme-dark-text: var(--text-light); /* Dark theme text color */
 }
 
 body {
@@ -24,19 +20,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: var(--theme-light-background); /* Use the light theme background as the default */
-  color: var(--theme-light-text); /* Use the light theme text color for default text */
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition for theme change */
-}
-
-.light-theme {
-  background-color: var(--theme-light-background);
-  color: var(--theme-light-text);
-}
-
-.dark-theme {
-  background-color: var(--theme-dark-background);
-  color: var(--theme-dark-text);
+  background-color: var(--off-white); /* Use the off white as the default background */
+  color: var(--primary-dark); /* Use the dark brown for default text */
 }
 
 h1 {

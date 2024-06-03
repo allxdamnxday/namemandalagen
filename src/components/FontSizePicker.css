@@ -3,14 +3,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1rem auto;
+  margin: 1rem auto 2rem; /* Adding vertical spacing at the bottom */
   width: 80%;
   max-width: 600px;
 }
 
 .font-size-picker label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
   color: var(--primary-dark); /* Updated to use primary dark color for label text */
   font-size: 1rem;
 }
